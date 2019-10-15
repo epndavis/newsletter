@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\StoreNewsletter;
+use App\Models\Email;
 
 class NewsletterController
 {
