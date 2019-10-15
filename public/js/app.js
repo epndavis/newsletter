@@ -1876,6 +1876,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     action: {
@@ -1885,6 +1894,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      errors: {},
       fields: {
         email: "",
         first_name: "",
@@ -1894,9 +1904,23 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submit: function submit() {
+      var _this = this;
+
       axios.post(this.action, this.fields).then(function (response) {
         console.log(response.data);
+
+        _this.reset();
+      })["catch"](function (exception) {
+        if ("response" in exception) {
+          _this.errors = exception.response.data.errors;
+        }
       });
+    },
+    reset: function reset() {
+      this.errors = {};
+      this.fields.email = "";
+      this.fields.first_name = "";
+      this.fields.last_name = "";
     }
   }
 });
@@ -19552,7 +19576,17 @@ var render = function() {
             _vm.$set(_vm.fields, "email", $event.target.value)
           }
         }
-      })
+      }),
+      _vm._v(" "),
+      _vm.errors.email
+        ? _c(
+            "p",
+            _vm._l(_vm.errors.email, function(error, index) {
+              return _c("span", { key: index }, [_vm._v(_vm._s(error))])
+            }),
+            0
+          )
+        : _vm._e()
     ]),
     _vm._v(" "),
     _c("label", { attrs: { for: "first_name" } }, [
@@ -19580,7 +19614,17 @@ var render = function() {
             _vm.$set(_vm.fields, "first_name", $event.target.value)
           }
         }
-      })
+      }),
+      _vm._v(" "),
+      _vm.errors.first_name
+        ? _c(
+            "p",
+            _vm._l(_vm.errors.first_name, function(error, index) {
+              return _c("span", { key: index }, [_vm._v(_vm._s(error))])
+            }),
+            0
+          )
+        : _vm._e()
     ]),
     _vm._v(" "),
     _c("label", { attrs: { for: "last_name" } }, [
@@ -19608,7 +19652,17 @@ var render = function() {
             _vm.$set(_vm.fields, "last_name", $event.target.value)
           }
         }
-      })
+      }),
+      _vm._v(" "),
+      _vm.errors.last_name
+        ? _c(
+            "p",
+            _vm._l(_vm.errors.last_name, function(error, index) {
+              return _c("span", { key: index }, [_vm._v(_vm._s(error))])
+            }),
+            0
+          )
+        : _vm._e()
     ]),
     _vm._v(" "),
     _c(
