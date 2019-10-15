@@ -16,5 +16,9 @@ class NewsletterController
         $email->last_name = $request->input('last_name');
 
         $email->save();
+
+        return response()->json([
+            'success' => true,
+        ]);
     }
 }

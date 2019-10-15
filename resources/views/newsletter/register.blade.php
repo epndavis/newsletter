@@ -28,6 +28,9 @@
                                 <th>
                                     Fullname
                                 </th>
+                                <th>
+                                    Action
+                                </th>
                             </tr>
                             @foreach ($emails as $email)
                             <tr>
