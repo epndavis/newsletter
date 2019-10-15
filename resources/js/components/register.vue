@@ -2,6 +2,8 @@
   <div>
     <h2>Sign up to our Newsletter</h2>
 
+    <p v-if="success">Thank you for signing up to our Newsletter.</p>
+
     <label for="email">
       <input
         id="email"
@@ -60,7 +62,8 @@ export default {
         email: "",
         first_name: "",
         last_name: ""
-      }
+      },
+      success: false
     };
   },
   methods: {
@@ -68,7 +71,7 @@ export default {
       axios
         .post(this.action, this.fields)
         .then(response => {
-          console.log(response.data);
+          this.success = true;
 
           this.reset();
         })
