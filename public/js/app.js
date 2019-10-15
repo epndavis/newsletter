@@ -1885,6 +1885,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     action: {
@@ -1899,7 +1901,8 @@ __webpack_require__.r(__webpack_exports__);
         email: "",
         first_name: "",
         last_name: ""
-      }
+      },
+      success: false
     };
   },
   methods: {
@@ -1907,7 +1910,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.post(this.action, this.fields).then(function (response) {
-        console.log(response.data);
+        _this.success = true;
 
         _this.reset();
       })["catch"](function (exception) {
@@ -19550,6 +19553,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("h2", [_vm._v("Sign up to our Newsletter")]),
+    _vm._v(" "),
+    _vm.success
+      ? _c("p", [_vm._v("Thank you for signing up to our Newsletter.")])
+      : _vm._e(),
     _vm._v(" "),
     _c("label", { attrs: { for: "email" } }, [
       _c("input", {
